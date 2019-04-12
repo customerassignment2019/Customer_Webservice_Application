@@ -1,11 +1,14 @@
 package com.customer.dao;
+/**
+ * @author manoj.kulakarni
+ */
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.customer.model.Customer;
 
-public interface CustomerDaoRepository  extends JpaRepository<Customer, Integer>{
-	
-	
+@Repository
+public interface CustomerDaoRepository extends JpaRepository<Customer, Integer> {
 
 }

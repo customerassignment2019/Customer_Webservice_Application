@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: customer-config
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: srinivas.pannur
+Built-By: manoj.kulakarni
 Implementation-Vendor-Id: com.customer
 Build-Jdk: 1.8.0_201
 Implementation-URL: https://projects.spring.io/spring-boot/customerope

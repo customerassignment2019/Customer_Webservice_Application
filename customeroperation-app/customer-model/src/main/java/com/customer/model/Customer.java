@@ -29,6 +29,18 @@ public class Customer {
 	@Column(name = "customer_mobileno")
 	private int mobileNo;
 
+	
+	
+	public Customer(int id, String customerName, int age, String emailId, String address, int mobileNo) {
+		super();
+		this.id = id;
+		this.customerName = customerName;
+		this.age = age;
+		this.emailId = emailId;
+		this.address = address;
+		this.mobileNo = mobileNo;
+	}
+
 	public int getId() {
 		return id;
 	}
