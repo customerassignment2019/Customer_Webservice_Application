@@ -1,4 +1,6 @@
 package com.customer.ws;
+import javax.ws.rs.core.Response;
+
 /**
  * @author manoj.kulakarni
  */
@@ -23,9 +25,6 @@ public class CustomerController {
 	@Autowired
 	private CustomerServiceForJPA customerServiceImpl;
 	
-	public CustomerController() {
-		
-	}
 	
 	@PostMapping("/addCustomer")
 	public Customer addCustomer(@RequestBody Customer customer) {
@@ -36,8 +35,8 @@ public class CustomerController {
 	}
 	
 	@PutMapping("/updateCustomer/{id}")
-	public Customer updateCustomer(@RequestBody Customer customer,@PathVariable int id) {
-		Customer updateCustomer = customerServiceImpl.updateCustomer(id, customer);
+	public Response updateCustomer(@RequestBody Customer customer,@PathVariable int id) {
+		Response updateCustomer = customerServiceImpl.updateCustomer(id, customer);
 		return updateCustomer;
 	
 }
@@ -49,14 +48,14 @@ public class CustomerController {
 		return updateCustomer;
 	}*/
 	@GetMapping("/getCustomerById/{id}")
-	public Customer getCustomerById(@PathVariable(value = "id") int id) {
-		Customer customer = customerServiceImpl.getCustomerById(id);
+	public Response getCustomerById(@PathVariable(value = "id") int id) {
+		Response customer = customerServiceImpl.getCustomerById(id);
 		
 		return customer;
 	}
 	@DeleteMapping("/deleteCustomer/{id}")
-	public int deleteCustomer(@PathVariable(value = "id") int id) {
-		int response = customerServiceImpl.deleteCustomer(id);
+	public Response deleteCustomer(@PathVariable(value = "id") int id) {
+		Response response = customerServiceImpl.deleteCustomer(id);
 		
 		return response;
 	}

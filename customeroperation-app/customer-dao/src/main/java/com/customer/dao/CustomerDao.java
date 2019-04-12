@@ -5,6 +5,8 @@ package com.customer.dao;
 
 import java.util.List;
 
+import javax.ws.rs.core.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,9 +23,15 @@ private	CustomerDaoRepository customerDaoRepository;
 		return customerDaoRepository.findAll();
 	}
 
-	public Customer getCustomerById(int id) {
-		
-		return customerDaoRepository.findOne(id);
+	public Response getCustomerById(int id) {
+		Customer customer=customerDaoRepository.findOne(id);
+		if(customer==null) {
+			 
+		return Response.status(Response.Status.NOT_FOUND).build();
+		}else {
+			
+			return Response.ok(customer).build();
+		}
 	}
 
 	public Customer addCustomer(Customer customer) {
@@ -31,22 +39,35 @@ private	CustomerDaoRepository customerDaoRepository;
 		return customerDaoRepository.save(customer);
 	}
 
-	public Customer updateCustomer(int id, Customer customer) {
+	public Response updateCustomer(int id, Customer customer) {
 		
 		Customer returncustomer=customerDaoRepository.findOne(id);
+		if(returncustomer==null) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}else {
+			
+			returncustomer.setMobileNo(customer.getMobileNo());
+			returncustomer.setAddress(customer.getAddress());
+			Customer updatedcustomer=customerDaoRepository.save(returncustomer);
+			if(updatedcustomer.equals(customer)) {
+				return Response.status(Response.Status.NOT_MODIFIED).build();
+			}else {
+				return Response.ok(updatedcustomer).build(); 
+			}
+		}
 		
-		returncustomer.setMobileNo(customer.getMobileNo());
-		returncustomer.setAddress(customer.getAddress());
-		Customer updatedcustomer=customerDaoRepository.save(returncustomer);
-		
-		return updatedcustomer;
 	}
 
-	public int deleteCustomer(int id) {
-		int res=0;
-		customerDaoRepository.delete(id);
-		res=1;
-		return res;
+	public Response deleteCustomer(int id) {
+		Response response= getCustomerById(id);
+		if(response.getStatus()==200) {
+			customerDaoRepository.delete(id);
+			return Response.ok().build();
+		}else {
+			return response;
+		}
+		
+
 	}
 
 	

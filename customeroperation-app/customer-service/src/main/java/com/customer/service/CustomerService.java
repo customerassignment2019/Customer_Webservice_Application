@@ -2,6 +2,8 @@ package com.customer.service;
 
 import java.util.List;
 
+import javax.ws.rs.core.Response;
+
 import org.springframework.stereotype.Service;
 
 import com.customer.model.Customer;
@@ -18,14 +20,14 @@ public interface CustomerService {
 	public List<Customer> getAllCustomers();
 
 	// this method is to get customer using id
-	public Customer getCustomerById(int id);
+	public Response getCustomerById(int id);
 
 	// this method is to add customer
 	public Customer addCustomer(Customer customer);
 
 	// this method is to update customer
-	public Customer updateCustomer(int id, Customer customer);
+	public Response updateCustomer(int id, Customer customer);
 
 	// this method is to delete customer
-	public int deleteCustomer(int id);
+	public Response deleteCustomer(int id);
 }

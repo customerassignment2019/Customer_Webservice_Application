@@ -4,6 +4,8 @@ package com.customer.service;
  */
 import java.util.List;
 
+import javax.ws.rs.core.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,7 @@ public class CustomerServiceForJPA implements CustomerService{
 	}
 
 	@Override
-	public Customer getCustomerById(int id) {
+	public Response getCustomerById(int id) {
 		
 		return customerDao.getCustomerById(id);
 	}
@@ -34,13 +36,13 @@ public class CustomerServiceForJPA implements CustomerService{
 	}
 
 	@Override
-	public Customer updateCustomer(int id, Customer customer) {
+	public Response updateCustomer(int id, Customer customer) {
 		
 		return customerDao.updateCustomer(id,customer);
 	}
 
 	@Override
-	public int deleteCustomer(int id) {
+	public Response deleteCustomer(int id) {
 		return customerDao.deleteCustomer(id);
 	}
 
