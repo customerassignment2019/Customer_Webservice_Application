@@ -6,6 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "Customer")
@@ -18,15 +24,19 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "customer_id")
 	private int id;
-	@Column(name = "customer_name")
+	@Column(name = "customer_name") 
+	@NotEmpty(message="Customer Name is empty")
 	private String customerName;
 	@Column(name = "customer_age")
+	@Min(18)
 	private int age;
 	@Column(name = "customer_emailid")
+	@Email(message="Customer Email id is not valid")
 	private String emailId;
 	@Column(name = "customer_address")
 	private String address;
 	@Column(name = "customer_mobileno")
+	@Max(value=10)
 	private int mobileNo;
 
 	

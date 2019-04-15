@@ -8,10 +8,12 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.customer.dao.CustomerDao;
 import com.customer.model.Customer;
 @Service
+@Transactional
 public class CustomerServiceForJPA implements CustomerService{
 	
 	@Autowired

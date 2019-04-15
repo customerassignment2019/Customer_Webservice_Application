@@ -1,4 +1,10 @@
 package com.customer.ws;
+import javax.validation.Valid;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
@@ -27,7 +33,7 @@ public class CustomerController {
 	
 	
 	@PostMapping("/addCustomer")
-	public Customer addCustomer(@RequestBody Customer customer) {
+	public Customer addCustomer(@Valid @RequestBody Customer customer) {
 		customerServiceImpl.addCustomer(customer);
 		
 		return customer;
@@ -42,10 +48,10 @@ public class CustomerController {
 }
 /*	@GET
 	@Path("/getCustomer/{id}")
-	@Produces(MediaType.TEXT_PLAIN_VALUE)
-	public Customer getCustomerById(@PathParam("id") int id) {
-		Customer updateCustomer = customerServiceImpl.getCustomerById(id);
-		return updateCustomer;
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getCustomerById(@PathParam("id") int id) {
+		Response customer = customerServiceImpl.getCustomerById(id);
+		return customer;
 	}*/
 	@GetMapping("/getCustomerById/{id}")
 	public Response getCustomerById(@PathVariable(value = "id") int id) {
